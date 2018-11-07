@@ -1,5 +1,7 @@
 package poo651;
 
+import java.io.*;
+
 public enum Operation {
 	PLUS('+') {
 		@Override
@@ -22,11 +24,17 @@ public enum Operation {
 	DIV('/') {
 		@Override
 		public double eval(double a, double b) {
+			double c;
+			try {
+				c = a / b;
+			} catch (ArithmeticException e) {
+
+			}
 			return a / b;
+
 		}
 	};
-	
-	
+
 	private char symbole;
 
 	Operation(char s) {
