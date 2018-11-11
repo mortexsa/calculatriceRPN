@@ -23,13 +23,10 @@ public enum Operation {
 	},
 	DIV('/') {
 		@Override
-		public double eval(double a, double b) {
+		public double eval(double a, double b) throws NonDivisibleException {
 			double c;
-			try {
-				c = a / b;
-			} catch (ArithmeticException e) {
-
-			}
+			if(b==0)
+				throw new NonDivisibleException();
 			return a / b;
 
 		}
@@ -41,6 +38,6 @@ public enum Operation {
 		symbole = s;
 	}
 
-	public abstract double eval(double a, double b);
+	public abstract double eval(double a, double b) throws NonDivisibleException;
 
 }

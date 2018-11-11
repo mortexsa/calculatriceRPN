@@ -13,14 +13,18 @@ public class MoteurRPN {
 		pile.push(operande);
 	}
 
-	public void appliquer(Operation op) throws PileException {
+	public void appliquer(Operation op) throws PileException, NonDivisibleException {
+		
 		if (pile.isEmpty())
-			throw new PileVideException();
-		if (pile.size() < 2)
+		{
+			throw new PileVideException();	
+		}
+		if (pile.size() == 1)
 			throw new PileInsuffisanteException();
 		else {
 			double a = pile.pop();
 			double b = pile.pop();
+		
 			enregistrer(op.eval(a, b));
 		}
 	}

@@ -27,13 +27,23 @@ public class SaisieRPN {
 					moteurRPN.appliquer(Operation.DIV);
 				} else {
 					operande = Double.parseDouble(input);
-					if(operande > MIN_VALUE && operande < MAX_VALUE) {
+					if(operande >= MIN_VALUE && operande <= MAX_VALUE) {
 						moteurRPN.enregistrer(operande);
 					}
+					else
+						throw new HorsBornesException("La valeur doit etre entre "+MIN_VALUE+"et "+MAX_VALUE);
 				}
 				System.out.println(moteurRPN.toString());
 			}catch (PileException e) {
-				// TODO: handle exception
+				System.out.println(e.getMessage());
+			}
+			catch (NonDivisibleException e)
+			{
+				System.out.println(e.getMessage());
+			}
+			catch(HorsBornesException e)
+			{
+				System.out.println(e.getMessage());
 			}
 			input = scan.nextLine();
 		}
