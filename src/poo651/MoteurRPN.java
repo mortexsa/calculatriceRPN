@@ -6,7 +6,7 @@ public class MoteurRPN {
 	private Stack<Double> pile;
 
 	public MoteurRPN() {
-		pile = new Stack<Double>();
+		this.pile = new Stack<Double>();
 	}
 
 	public void enregistrer(double operande) {
@@ -26,8 +26,6 @@ public class MoteurRPN {
 	}
 
 	public String toString() {
-		String contenu = pile.toString();
-		System.out.println(contenu);
-		return contenu;
+		return pile.toString();
 	}
 }

@@ -9,7 +9,7 @@ public enum Operation {
 			return a + b;
 		}
 	},
-	MULT('x') {
+	MULT('*') {
 		@Override
 		public double eval(double a, double b) {
 			return a * b;
