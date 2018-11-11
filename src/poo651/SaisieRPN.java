@@ -1,12 +1,13 @@
 package poo651;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SaisieRPN {
 	private static final double MIN_VALUE = 0;
 	private static final double MAX_VALUE = 10000000;
 	
-	public void entrerSaisie() {
+	public void entrerSaisie() throws Exception {
 		MoteurRPN moteurRPN = new MoteurRPN();
 		double operande;
 		
@@ -17,13 +18,15 @@ public class SaisieRPN {
 		
 		while(!input.equals("exit")) {
 			try {
-				if(input.charAt(0) == '+') {
+				if(input.length()==0)
+					throw new InputVideException();
+				if(input.equals("+")) {
 					moteurRPN.appliquer(Operation.PLUS);
-				} else if(input.charAt(0) == '-') {
+				} else if(input.equals("-")) {
 					moteurRPN.appliquer(Operation.MOINS);
-				} else if(input.charAt(0) == '*') {
+				} else if(input.equals("*")) {
 					moteurRPN.appliquer(Operation.MULT);
-				} else if(input.charAt(0) == '/') {
+				} else if(input.equals("/")) {
 					moteurRPN.appliquer(Operation.DIV);
 				} else {
 					operande = Double.parseDouble(input);
@@ -31,7 +34,8 @@ public class SaisieRPN {
 						moteurRPN.enregistrer(operande);
 					}
 					else
-						throw new HorsBornesException("La valeur doit etre entre "+MIN_VALUE+"et "+MAX_VALUE);
+						throw new InputInadmissibleException("La valeur doit etre un nombre entre "+MIN_VALUE+"et "+MAX_VALUE);
+					
 				}
 				System.out.println(moteurRPN.toString());
 			}catch (PileException e) {
@@ -41,9 +45,17 @@ public class SaisieRPN {
 			{
 				System.out.println(e.getMessage());
 			}
-			catch(HorsBornesException e)
+			catch(InputInadmissibleException e)
 			{
 				System.out.println(e.getMessage());
+			}
+			catch(InputVideException e)
+			{
+				System.out.println(e.getMessage());
+			}
+			catch(NumberFormatException e)
+			{
+				System.out.println("Le input doit etre un nombre ou un symbole d'operation");
 			}
 			input = scan.nextLine();
 		}
