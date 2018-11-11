@@ -19,7 +19,7 @@ public class SaisieRPN {
 		while(!input.equals("exit")) {
 			try {
 				if(input.length()==0)
-					throw new InputVideException();
+					throw new InputInadmissibleException("L'input ne peut pas etre vide");
 				if(input.equals("+")) {
 					moteurRPN.appliquer(Operation.PLUS);
 				} else if(input.equals("-")) {
@@ -46,10 +46,6 @@ public class SaisieRPN {
 				System.out.println(e.getMessage());
 			}
 			catch(InputInadmissibleException e)
-			{
-				System.out.println(e.getMessage());
-			}
-			catch(InputVideException e)
 			{
 				System.out.println(e.getMessage());
 			}
