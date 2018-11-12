@@ -37,7 +37,6 @@ public class SaisieRPN {
 						throw new InputInadmissibleException("La valeur doit etre un nombre entre "+MIN_VALUE+"et "+MAX_VALUE);
 					
 				}
-				System.out.println(moteurRPN.toString());
 			}catch (PileException e) {
 				System.out.println(e.getMessage());
 			}
@@ -53,7 +52,10 @@ public class SaisieRPN {
 			{
 				System.out.println("Le input doit etre un nombre ou un symbole d'operation");
 			}
-			input = scan.nextLine();
+			finally {
+				System.out.println(moteurRPN.toString());
+				input = scan.nextLine();
+			}
 		}
 		scan.close();
 	}

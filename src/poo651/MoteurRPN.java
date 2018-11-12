@@ -24,8 +24,14 @@ public class MoteurRPN {
 		else {
 			Double a = pile.pop();
 			Double b = pile.pop();
-		
-			enregistrer(op.eval(a, b));
+			try {
+				enregistrer(op.eval(b, a));
+			} catch (NonDivisibleException e) {
+				pile.push(b);
+				pile.push(a);
+				System.out.println(e.getMessage());
+			}
+			
 		}
 	}
 
