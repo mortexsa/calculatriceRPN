@@ -22,8 +22,8 @@ public class MoteurRPN {
 		if (pile.size() == 1)
 			throw new PileInsuffisanteException();
 		else {
-			double a = pile.pop();
-			double b = pile.pop();
+			Double a = pile.pop();
+			Double b = pile.pop();
 		
 			enregistrer(op.eval(a, b));
 		}
