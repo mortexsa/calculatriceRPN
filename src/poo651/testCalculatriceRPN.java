@@ -88,8 +88,65 @@ public class testCalculatriceRPN {
 		moteurRPN.enregistrer(0);
 		try {
 			moteurRPN.appliquer(Operation.DIV);
-		} catch (Exception e) {
+		} catch (NonDivisibleException e) {
 			assert e.getMessage().equals("On ne peut diviser avec 0");
-		}
+		}catch (HorsBornesException e) {
+		}catch (PileException e) {}
+	}
+	
+	@Test
+	public void testPileVide() {
+		MoteurRPN moteurRPN = new MoteurRPN();
+		try {
+			moteurRPN.appliquer(Operation.DIV);
+		}catch (PileException e) {
+			assert e.getMessage().equals("La pile est vide");
+		}catch (HorsBornesException e) {
+		}catch (NonDivisibleException e) {}
+	}
+	
+	@Test
+	public void testPileInsuffisante() {
+		MoteurRPN moteurRPN = new MoteurRPN();
+		moteurRPN.enregistrer(5);
+		try {
+			moteurRPN.appliquer(Operation.DIV);
+		}catch (PileException e) {
+			assert e.getMessage().equals("Il n'y a qu'un seul nombre");
+		}catch (HorsBornesException e) {
+		}catch (NonDivisibleException e) {}
+	}
+	
+	@Test
+	public void testHorsBorneExceptionMax() {
+		MoteurRPN moteurRPN = new MoteurRPN();
+		moteurRPN.enregistrer(SaisieRPN.MAX_VALUE);
+		moteurRPN.enregistrer(SaisieRPN.MAX_VALUE);
+		try {
+			moteurRPN.appliquer(Operation.PLUS);
+		}catch (PileException e) {
+		}catch (HorsBornesException e) {
+			assert e.getMessage().equals("La valeur doit etre un nombre entre "+SaisieRPN.MIN_VALUE+" et "+SaisieRPN.MAX_VALUE);
+		}catch (NonDivisibleException e) {}
+	}
+	
+	@Test
+	public void testHorsBorneExceptionMin() {
+		MoteurRPN moteurRPN = new MoteurRPN();
+		moteurRPN.enregistrer(SaisieRPN.MIN_VALUE);
+		moteurRPN.enregistrer(100);
+		try {
+			moteurRPN.appliquer(Operation.DIV);
+		}catch (PileException e) {
+		}catch (HorsBornesException e) {
+			assert e.getMessage().equals("La valeur doit etre un nombre entre "+SaisieRPN.MIN_VALUE+" et "+SaisieRPN.MAX_VALUE);
+		}catch (NonDivisibleException e) {}
+	}
+	
+	@Test
+	public void testToString() {
+		MoteurRPN moteurRPN = new MoteurRPN();
+		moteurRPN.enregistrer(100);
+		assert moteurRPN.toString().equals("[100.0]");
 	}
 }

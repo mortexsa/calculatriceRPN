@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SaisieRPN {
-	public static final double MIN_VALUE = 2;
+	public static final double MIN_VALUE = 0.000001;
 	public static final double MAX_VALUE = 10000000;
 	
 	public void entrerSaisie() throws Exception {
