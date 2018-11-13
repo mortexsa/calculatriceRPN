@@ -81,4 +81,15 @@ public class testCalculatriceRPN {
 		}catch (HorsBornesException e) {}
 	}
 	
+	@Test
+	public void testNonDivMoteur() {
+		MoteurRPN moteurRPN = new MoteurRPN();
+		moteurRPN.enregistrer(5);
+		moteurRPN.enregistrer(0);
+		try {
+			moteurRPN.appliquer(Operation.DIV);
+		} catch (Exception e) {
+			assert e.getMessage().equals("On ne peut diviser avec 0");
+		}
+	}
 }

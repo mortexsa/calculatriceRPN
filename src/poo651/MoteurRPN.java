@@ -35,7 +35,7 @@ public class MoteurRPN {
 			}
 			else
 			{
-				enregistrer(op.eval(a, b));
+				enregistrer(op.eval(b, a));
 			}
 		}
 	}
