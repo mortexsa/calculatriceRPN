@@ -3,6 +3,7 @@ package poo651;
 import java.util.Stack;
 
 public class MoteurRPN {
+
 	private Stack<Double> pile;
 
 	public MoteurRPN() {
@@ -17,25 +18,25 @@ public class MoteurRPN {
 		pile.push(operande);
 	}
 
-	public void appliquer(Operation op) throws PileException, NonDivisibleException {
-		
-		if (pile.isEmpty())
-		{
-			throw new PileVideException();	
+	public void appliquer(Operation op) throws PileException, NonDivisibleException, HorsBornesException {
+
+		if (pile.isEmpty()) {
+			throw new PileVideException();
 		}
 		if (pile.size() == 1)
 			throw new PileInsuffisanteException();
 		else {
 			Double a = pile.pop();
 			Double b = pile.pop();
-			try {
-				enregistrer(op.eval(b, a));
-			} catch (NonDivisibleException e) {
+			if (Math.abs(op.eval(b, a)) < SaisieRPN.MIN_VALUE || Math.abs(op.eval(b, a)) > SaisieRPN.MAX_VALUE) {
 				pile.push(b);
 				pile.push(a);
-				System.out.println(e.getMessage());
+				throw new HorsBornesException("La valeur doit etre un nombre entre " + SaisieRPN.MIN_VALUE + "et " + SaisieRPN.MAX_VALUE);
 			}
-			
+			else
+			{
+				enregistrer(op.eval(a, b));
+			}
 		}
 	}
 

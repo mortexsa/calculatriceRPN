@@ -77,7 +77,8 @@ public class testCalculatriceRPN {
 			Double d = moteurRPN.getPile().get(0);
 			assertEquals(5,d,0);
 		}catch (NonDivisibleException e) {
-		}catch (PileException e) {}
+		}catch (PileException e) {
+		}catch (HorsBornesException e) {}
 	}
 	
 }
