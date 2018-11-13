@@ -28,7 +28,7 @@ public class MoteurRPN {
 		else {
 			Double a = pile.pop();
 			Double b = pile.pop();
-			if (Math.abs(op.eval(b, a)) < SaisieRPN.MIN_VALUE || Math.abs(op.eval(b, a)) > SaisieRPN.MAX_VALUE) {
+			if (Math.abs(op.eval(b, a)) <= SaisieRPN.MIN_VALUE || Math.abs(op.eval(b, a)) >= SaisieRPN.MAX_VALUE) {
 				pile.push(b);
 				pile.push(a);
 				throw new HorsBornesException("La valeur doit etre un nombre entre " + SaisieRPN.MIN_VALUE + "et " + SaisieRPN.MAX_VALUE);
