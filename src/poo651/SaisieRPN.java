@@ -4,8 +4,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SaisieRPN {
-	private static final double MIN_VALUE = 0;
-	private static final double MAX_VALUE = 10000000;
+	public static final double MIN_VALUE = 2;
+	public static final double MAX_VALUE = 10000000;
 	
 	public void entrerSaisie() throws Exception {
 		MoteurRPN moteurRPN = new MoteurRPN();
@@ -19,7 +19,7 @@ public class SaisieRPN {
 		while(!input.equals("exit")) {
 			try {
 				if(input.length()==0)
-					throw new InputInadmissibleException("L'input ne peut pas etre vide");
+					throw new HorsBornesException("L'input ne peut pas etre vide");
 				if(input.equals("+")) {
 					moteurRPN.appliquer(Operation.PLUS);
 				} else if(input.equals("-")) {
@@ -30,11 +30,11 @@ public class SaisieRPN {
 					moteurRPN.appliquer(Operation.DIV);
 				} else {
 					operande = Double.parseDouble(input);
-					if(operande >= MIN_VALUE && operande <= MAX_VALUE) {
+					if(Math.abs(operande) >= MIN_VALUE && Math.abs(operande) <= MAX_VALUE) {
 						moteurRPN.enregistrer(operande);
 					}
 					else
-						throw new InputInadmissibleException("La valeur doit etre un nombre entre "+MIN_VALUE+"et "+MAX_VALUE);
+						throw new HorsBornesException("La valeur doit etre un nombre entre "+MIN_VALUE+"et "+MAX_VALUE);
 					
 				}
 				System.out.println(moteurRPN.toString());
@@ -45,7 +45,7 @@ public class SaisieRPN {
 			{
 				System.out.println(e.getMessage());
 			}
-			catch(InputInadmissibleException e)
+			catch(HorsBornesException e)
 			{
 				System.out.println(e.getMessage());
 			}
