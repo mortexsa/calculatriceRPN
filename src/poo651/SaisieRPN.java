@@ -34,7 +34,7 @@ public class SaisieRPN {
 						moteurRPN.enregistrer(operande);
 					}
 					else
-						throw new InputInadmissibleException("La valeur doit etre un nombre entre "+MIN_VALUE+"et "+MAX_VALUE);
+						throw new InputInadmissibleException("La valeur doit etre un nombre compris entre "+MIN_VALUE+" et "+MAX_VALUE);
 					
 				}
 			}catch (PileException e) {

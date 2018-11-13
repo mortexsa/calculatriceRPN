@@ -37,6 +37,10 @@ public enum Operation {
 	Operation(char s) {
 		symbole = s;
 	}
+	
+	public char getSymbole() {
+		return symbole;
+	}
 
 	public abstract double eval(double a, double b) throws NonDivisibleException;
 

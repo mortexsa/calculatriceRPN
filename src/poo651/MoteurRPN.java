@@ -8,7 +8,11 @@ public class MoteurRPN {
 	public MoteurRPN() {
 		this.pile = new Stack<Double>();
 	}
-
+	
+	public Stack<Double> getPile() {
+		return pile;
+	}
+	
 	public void enregistrer(double operande) {
 		pile.push(operande);
 	}
