@@ -164,13 +164,14 @@ public class testCalculatriceRPN {
 	public void testEntreeSaisie() {
 		SaisieRPN saisieRPN = new SaisieRPN();
 		try {
-			String data = "4";
+			String data = "100000000000";
 			InputStream stdin = System.in;
 			System.setIn(new ByteArrayInputStream(data.getBytes()));
-			data = "5";
-			System.setIn(new ByteArrayInputStream(data.getBytes()));
 			saisieRPN.entrerSaisie();
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		//https://stackoverflow.com/questions/34139658/how-to-junit-test-a-method-with-a-scanner
 	}
 	
 }
