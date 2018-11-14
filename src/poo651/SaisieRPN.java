@@ -7,10 +7,14 @@ public class SaisieRPN {
 	public static final double MIN_VALUE = 0.000001;
 	public static final double MAX_VALUE = 10000000;
 	
+	private MoteurRPN moteurRPN; 
+	
+	public SaisieRPN() {
+		this.moteurRPN = new MoteurRPN();
+	}
+	
 	public void entrerSaisie() throws Exception {
-		MoteurRPN moteurRPN = new MoteurRPN();
-		double operande;
-		
+		Double operande;
 		System.out.println("entrez un nombre ou un operande ou quittez en ecrivant 'exit':");
 		Scanner scan = new Scanner(System.in);
 		

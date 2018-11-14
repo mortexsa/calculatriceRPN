@@ -149,4 +149,7 @@ public class testCalculatriceRPN {
 		moteurRPN.enregistrer(100);
 		assert moteurRPN.toString().equals("[100.0]");
 	}
+
+	
+	
 }
