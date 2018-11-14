@@ -2,7 +2,11 @@ package poo651;
 
 import static org.junit.Assert.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
 import org.junit.Test;
+import org.junit.validator.PublicClassValidator;
 
 public class testCalculatriceRPN {
 	
@@ -150,6 +154,23 @@ public class testCalculatriceRPN {
 		assert moteurRPN.toString().equals("[100.0]");
 	}
 
+	@Test
+	public void testConstructSaisieRPN() {
+		SaisieRPN saisieRPN = new SaisieRPN();
+		assertNotNull(saisieRPN);
+	}
 	
+	@Test
+	public void testEntreeSaisie() {
+		SaisieRPN saisieRPN = new SaisieRPN();
+		try {
+			String data = "4";
+			InputStream stdin = System.in;
+			System.setIn(new ByteArrayInputStream(data.getBytes()));
+			data = "5";
+			System.setIn(new ByteArrayInputStream(data.getBytes()));
+			saisieRPN.entrerSaisie();
+		} catch (Exception e) {}
+	}
 	
 }
