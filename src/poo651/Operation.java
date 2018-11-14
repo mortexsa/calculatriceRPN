@@ -25,7 +25,7 @@ public enum Operation {
 		@Override
 		public double eval(double a, double b) throws NonDivisibleException {
 			double c;
-			if(b==0)
+			if (b == 0)
 				throw new NonDivisibleException();
 			return a / b;
 
@@ -37,7 +37,7 @@ public enum Operation {
 	Operation(char s) {
 		symbole = s;
 	}
-	
+
 	public char getSymbole() {
 		return symbole;
 	}

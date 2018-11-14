@@ -9,11 +9,11 @@ public class MoteurRPN {
 	public MoteurRPN() {
 		this.pile = new Stack<Double>();
 	}
-	
+
 	public Stack<Double> getPile() {
 		return pile;
 	}
-	
+
 	public void enregistrer(double operande) {
 		pile.push(operande);
 	}
@@ -31,10 +31,9 @@ public class MoteurRPN {
 			if (Math.abs(op.eval(b, a)) <= SaisieRPN.MIN_VALUE || Math.abs(op.eval(b, a)) >= SaisieRPN.MAX_VALUE) {
 				pile.push(b);
 				pile.push(a);
-				throw new HorsBornesException("La valeur doit etre un nombre entre "+SaisieRPN.MIN_VALUE+" et "+SaisieRPN.MAX_VALUE);
-			}
-			else
-			{
+				throw new HorsBornesException("La valeur doit etre un nombre entre la valeur absolue de"
+						+ SaisieRPN.MIN_VALUE + " et la valeur absolue de " + SaisieRPN.MAX_VALUE);
+			} else {
 				enregistrer(op.eval(b, a));
 			}
 		}
