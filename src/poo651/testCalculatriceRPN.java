@@ -134,8 +134,8 @@ public class testCalculatriceRPN {
 			moteurRPN.appliquer(Operation.PLUS);
 		} catch (PileException e) {
 		} catch (HorsBornesException e) {
-			assert e.getMessage().equals(
-					"La valeur doit etre un nombre entre " + SaisieRPN.MIN_VALUE + " et " + SaisieRPN.MAX_VALUE);
+			assert e.getMessage().equals("La valeur doit etre un nombre entre la valeur absolue de"
+					+ SaisieRPN.MIN_VALUE + " et la valeur absolue de " + SaisieRPN.MAX_VALUE);
 		} catch (NonDivisibleException e) {
 		}
 	}
@@ -149,8 +149,8 @@ public class testCalculatriceRPN {
 			moteurRPN.appliquer(Operation.DIV);
 		} catch (PileException e) {
 		} catch (HorsBornesException e) {
-			assert e.getMessage().equals(
-					"La valeur doit etre un nombre entre " + SaisieRPN.MIN_VALUE + " et " + SaisieRPN.MAX_VALUE);
+			assert e.getMessage().equals("La valeur doit etre un nombre entre la valeur absolue de"
+					+ SaisieRPN.MIN_VALUE + " et la valeur absolue de " + SaisieRPN.MAX_VALUE);
 		} catch (NonDivisibleException e) {
 		}
 	}

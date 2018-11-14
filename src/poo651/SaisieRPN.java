@@ -37,8 +37,8 @@ public class SaisieRPN {
 					if (Math.abs(operande) >= MIN_VALUE && Math.abs(operande) <= MAX_VALUE) {
 						moteurRPN.enregistrer(operande);
 					} else
-						throw new HorsBornesException("La valeur doit etre un nombre entre la valeur absolue de "
-								+ MIN_VALUE + " et la valeur absolue de " + MAX_VALUE);
+						throw new HorsBornesException("La valeur doit etre un nombre entre la valeur absolue de"
+								+ SaisieRPN.MIN_VALUE + " et la valeur absolue de " + SaisieRPN.MAX_VALUE);
 				}
 			} catch (PileException e) {
 				System.out.println(e.getMessage());
