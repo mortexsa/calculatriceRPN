@@ -134,8 +134,7 @@ public class testCalculatriceRPN {
 			moteurRPN.appliquer(Operation.PLUS);
 		} catch (PileException e) {
 		} catch (HorsBornesException e) {
-			assert e.getMessage().equals("La valeur doit etre un nombre entre la valeur absolue de"
-					+ SaisieRPN.MIN_VALUE + " et la valeur absolue de " + SaisieRPN.MAX_VALUE);
+			assert e.getMessage().equals("La valeur doit etre un nombre entre la valeur absolue de "+ SaisieRPN.MIN_VALUE + " et la valeur absolue de " + SaisieRPN.MAX_VALUE);
 		} catch (NonDivisibleException e) {
 		}
 	}
@@ -149,8 +148,7 @@ public class testCalculatriceRPN {
 			moteurRPN.appliquer(Operation.DIV);
 		} catch (PileException e) {
 		} catch (HorsBornesException e) {
-			assert e.getMessage().equals("La valeur doit etre un nombre entre la valeur absolue de"
-					+ SaisieRPN.MIN_VALUE + " et la valeur absolue de " + SaisieRPN.MAX_VALUE);
+			assert e.getMessage().equals("La valeur doit etre un nombre entre la valeur absolue de "+ SaisieRPN.MIN_VALUE + " et la valeur absolue de " + SaisieRPN.MAX_VALUE);
 		} catch (NonDivisibleException e) {
 		}
 	}
@@ -167,17 +165,60 @@ public class testCalculatriceRPN {
 		SaisieRPN saisieRPN = new SaisieRPN();
 		assertNotNull(saisieRPN);
 	}
-
+	
 	@Test
-	public void testEntreeSaisie() {
+	public void testEntreeNumber() {
 		SaisieRPN saisieRPN = new SaisieRPN();
 		try {
-			String data = "10000000000";
+			String data = "20";
 			InputStream stdin = System.in;
 			System.setIn(new ByteArrayInputStream(data.getBytes()));
 			saisieRPN.entrerSaisie();
+			assert saisieRPN.getMoteurRPN().getPile().toString().equals("[20.0]");
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			
+		}
+	}
+	
+	@Test
+	public void testEntreeExceptionLetre() {
+		SaisieRPN saisieRPN = new SaisieRPN();
+		try {
+			String data = "a";
+			InputStream stdin = System.in;
+			System.setIn(new ByteArrayInputStream(data.getBytes()));
+			saisieRPN.entrerSaisie();
+			assert saisieRPN.getMoteurRPN().getPile().toString().equals("[]");
+		} catch (Exception e) {
+			
+		}
+	}
+	
+	@Test
+	public void testEntreeExceptionHorsBorneMax() {
+		SaisieRPN saisieRPN = new SaisieRPN();
+		try {
+			String data = "1000000000000";
+			InputStream stdin = System.in;
+			System.setIn(new ByteArrayInputStream(data.getBytes()));
+			saisieRPN.entrerSaisie();
+			assert saisieRPN.getMoteurRPN().getPile().toString().equals("[]");
+		} catch (Exception e) {
+			
+		}
+	}
+	
+	@Test
+	public void testEntreeExceptionHorsBorneMin() {
+		SaisieRPN saisieRPN = new SaisieRPN();
+		try {
+			String data = "0.00000000000000000000001";
+			InputStream stdin = System.in;
+			System.setIn(new ByteArrayInputStream(data.getBytes()));
+			saisieRPN.entrerSaisie();
+			assert saisieRPN.getMoteurRPN().getPile().toString().equals("[]");
+		} catch (Exception e) {
+			
 		}
 	}
 
