@@ -34,7 +34,7 @@ public enum Operation {
 
 	private char symbole;
 
-	Operation(char s) {
+	Operation (char s) {
 		symbole = s;
 	}
 
